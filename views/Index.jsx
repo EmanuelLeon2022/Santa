@@ -5,7 +5,7 @@ function Index({ fruits }) {
     <>
       <nav>
         <a href="/fruits/new">
-          <h1>Create a New Fruit</h1>
+          <h1>Somete tu Regalo Preferido</h1>
         </a>
       </nav>
       <ul>
@@ -30,7 +30,7 @@ function Index({ fruits }) {
 
                 <input type="submit" value="DELETE" />
                 </form>
-                <a href={`/fruits/${fruit._id}/edit`}><button style={{margin:"12px"}}>Edit This Fruit</button></a>
+                <a href={`/fruits/${fruit._id}/edit`}><button style={{margin:"12px"}}>Editar Tu Envío</button></a>
 
                 </div>
               </li>
