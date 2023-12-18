@@ -1,8 +1,8 @@
 require('dotenv').config()
 const express = require('express')
 const app = express()
-const froots = require('./models/fruits')
-const Fruit = require('./models/fruit')
+const froots = require('./models/gifts')
+const Gift = require('./models/gift')
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 
@@ -32,45 +32,45 @@ app.use((req, res, next) => {
 // ---------------------------------[Middleware]
 
 
-app.get('/fruits', (req,res)=>{
-    Fruit.find({},(err,allFruits)=>{
-        console.log("ALL_FRUITS:", allFruits)
-        fruits: allFruits
+app.get('/gifts', (req,res)=>{
+    Gift.find({},(err,allGifts)=>{
+        console.log("ALL_GIFTS:", allGifts)
+        gifts: allGifts
         res.render('Index',{
-            fruits: allFruits
+            gifts: allGifts
         })
     })
 })
 // ----------------------------------[Index (R)]
 
-app.get('/fruits/new',(req,res)=>{
+app.get('/gifts/new',(req,res)=>{
     res.render('New')
 })
 // --------------------------------------[New]
 
-app.post('/fruits',(req,res)=>{
-    if(req.body.readyToEat === 'on'){ 
-        req.body.readyToEat = true; 
+app.post('/gifts',(req,res)=>{
+    if(req.body.sure === 'on'){ 
+        req.body.sure = true; 
     } else { 
-        req.body.readyToEat = false; 
+        req.body.sure = false; 
     }
-    Fruit.create(req.body,(err, createdFruit)=>{
-        console.log("Created Fruit: ",req.body)
+    Gift.create(req.body,(err, createdGift)=>{
+        console.log("Created Gift: ",req.body)
         console.log(err)
     })
-    res.redirect('/fruits')
+    res.redirect('/gifts')
     // ---> Add New Fruit to Existing DataSet
 })
 // ----------------------------------[POST (C)]
 
 
-app.get('/fruits/:id/edit', (req, res)=>{
-    Fruit.findById(req.params.id, (err, foundFruit)=>{ 
+app.get('/gifts/:id/edit', (req, res)=>{
+    Gift.findById(req.params.id, (err, foundGift)=>{ 
       if(!err){
         res.render(
     		  'Edit',
     		{
-    			fruit: foundFruit 
+    			gift: foundGift 
     		}
     	);
     } else {
@@ -82,47 +82,47 @@ app.get('/fruits/:id/edit', (req, res)=>{
 
 
 
-app.put('/fruits/:id', (req, res)=>{
-    if(req.body.readyToEat === 'on'){
-        req.body.readyToEat = true;
+app.put('/gifts/:id', (req, res)=>{
+    if(req.body.sure === 'on'){
+        req.body.sure = true;
     } else {
-        req.body.readyToEat = false;
+        req.body.sure = false;
     }
-    Fruit.findByIdAndUpdate(req.params.id, req.body, (err, updatedFruit)=>{
-       console.log(updatedFruit)
-        res.redirect(`/fruits/${req.params.id}`);
+    Gift.findByIdAndUpdate(req.params.id, req.body, (err, updatedGift)=>{
+       console.log(updatedGift)
+        res.redirect(`/gifts/${req.params.id}`);
     });
 });
 // -----------------------------------------------[PUT/PATCH (U)]
 
 
 
-app.delete('/fruits/:id', (req, res)=>{
-    Fruit.findByIdAndRemove(req.params.id,(err, data)=>{
-        res.redirect('/fruits')
+app.delete('/gifts/:id', (req, res)=>{
+    Gift.findByIdAndRemove(req.params.id,(err, data)=>{
+        res.redirect('/gifts')
     })
 });
 // --------------------------------------[Delete (D)]
 
-app.get('/fruits/seed', (req, res)=>{
+app.get('/gifts/ribbon', (req, res)=>{
     Fruit.create([
         {
             name:'grapefruit',
-            color:'pink',
-            readyToEat:true
+            item:'pink',
+            sure:true
         },
         {
             name:'grape',
-            color:'purple',
-            readyToEat:false
+            item:'purple',
+            sure:false
         },
         {
             name:'avocado',
-            color:'green',
-            readyToEat:true
+            item:'green',
+            sure:true
         }
     ], (err, data)=>{
-        res.redirect('/fruits');
+        res.redirect('/gifts');
     })
 });
 
@@ -131,10 +131,10 @@ app.get('/fruits/seed', (req, res)=>{
 
 
 
-app.get('/fruits/:id', (req,res)=>{
-    Fruit.findById(req.params.id, (err, foundFruit)=>{
+app.get('/gifts/:id', (req,res)=>{
+    Gift.findById(req.params.id, (err, foundGift)=>{
         res.render('Show',{
-            fruit: foundFruit
+            gift: foundGift
         })
     });
 })

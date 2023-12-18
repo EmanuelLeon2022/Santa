@@ -1,17 +1,17 @@
 import React from "react";
 
-function Index({ fruits }) {
+function Index({ gifts }) {
   return (
     <>
       <nav>
-        <a href="/fruits/new">
+        <a href="/gifts/new">
           <h1>Somete tu Regalo Preferido</h1>
         </a>
       </nav>
       <ul>
         <h1>
           {" "}
-          {fruits.map((fruit, i) => {
+          {gifts.map((gift, i) => {
             return (
               <li key={i}
                 style={{
@@ -24,13 +24,13 @@ function Index({ fruits }) {
                 }}
               >
                 {" "}
-                <a href={`/fruits/${fruit.id}`}>{fruit.name} </a>{" "}
+                <a href={`/gifts/${gift.id}`}>{gift.name} </a>{" "}
                 <div style={{display:"flex",justifyContent:"space-evenly"}}>
-                <form action={`/fruits/${fruit._id}?_method=DELETE`} method="POST">
+                <form action={`/gifts/${gift._id}?_method=DELETE`} method="POST">
 
                 <input type="submit" value="DELETE" />
                 </form>
-                <a href={`/fruits/${fruit._id}/edit`}><button style={{margin:"12px"}}>Editar Tu Envío</button></a>
+                <a href={`/gifts/${gift._id}/edit`}><button style={{margin:"12px"}}>Editar Tu Envío</button></a>
 
                 </div>
               </li>

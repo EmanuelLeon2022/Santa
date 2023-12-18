@@ -1,13 +1,14 @@
 import React from 'react'
 
-function Edit({fruit}) {
+function Edit({gift}) {
   return (
    <>
-     <form action={`/fruits/${fruit._id}?_method=PUT`} method="POST">
-          Name: <input type="text" name="name" defaultValue={fruit.name}/><br/>
-          Color: <input type="text" name="color"  defaultValue={fruit.color}/><br/>
-          Is Ready To Eat:
-              { fruit.readyToEat? <input type="checkbox" name="readyToEat" defaultChecked />: <input type="checkbox" name="readyToEat"/> }
+   <a href='/gifts'>Regresar al Indice</a>
+     <form action={`/gifts/${gift._id}?_method=PUT`} method="POST">
+          Name: <input type="text" name="name" defaultValue={gift.name}/><br/>
+          Item: <input type="text" name="item"  defaultValue={gift.item}/><br/>
+          Sure:
+              { gift.sure? <input type="checkbox" name="sure" defaultChecked />: <input type="checkbox" name="sure"/> }
           <br/>
           <input type="submit" value="Submit Changes"/>
       </form>
