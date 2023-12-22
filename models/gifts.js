@@ -7,7 +7,7 @@ const gifts = [
     {
         name:'pear',
         item: 'green',
-        readyToEat: false
+        sure: false
     },
     {
         name:'banana',

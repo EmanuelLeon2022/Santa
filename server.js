@@ -1,7 +1,7 @@
 require('dotenv').config()
 const express = require('express')
 const app = express()
-const froots = require('./models/gifts')
+const gofts = require('./models/gifts')
 const Gift = require('./models/gift')
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
